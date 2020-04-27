@@ -1,0 +1,19 @@
+---
+version: "2.1"
+services:
+  transmission:
+    image: linuxserver/transmission:arm32v7-latest
+    container_name: transmission
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=Pacific/Auckland
+      - TRANSMISSION_WEB_HOME=/transmission-web-control/ #optional
+      - USER=${ADMIN_USER} #optional
+      - PASS=${ADMIN_PASS} #optional
+    volumes:
+      - ${CONFIG_PATH}:/config
+      - ${DOWNLOAD_PATH}:/downloads
+      - ${WATH_PATH}:/watch
+    network_mode: host
+    restart: unless-stopped

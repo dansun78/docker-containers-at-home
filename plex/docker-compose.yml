@@ -1,0 +1,16 @@
+version: '2'
+services:
+  plex:
+    container_name: plex
+    image: dansun78/pms-docker-pi
+    restart: unless-stopped
+    environment:
+      - TZ="Pacific/Auckland"
+      - PLEX_CLAIM=${PLEX_CLAIM}
+      - PLEX_UID=${PLEX_UID}
+      - PLEX_GID=${PLEX_GID} 
+      - CHANGE_CONFIG_DIR_OWNERSHIP=false
+    network_mode: host
+    volumes:
+      - ${CONFIG_PATH}:/config
+      - ${DATA_PATH}:/data
