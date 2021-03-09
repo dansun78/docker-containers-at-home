@@ -1,7 +1,7 @@
-# Running Docker Containers on a Raspberry Pi 4 at Home
+# Running Docker Containers on devices at Home
 
 This repository includes Docker Compose files that I used to define services
-running on a Raspberry Pi 4 at home for my personal use.
+running on a Raspberry Pi 4 and a Linux workstation at home for my personal use.
 
 Configurations for each service are declared as environment variables in its
 Docker Compose file and are expected to be passed to Docker Compose via its
