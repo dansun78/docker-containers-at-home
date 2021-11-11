@@ -1,0 +1,27 @@
+---
+version: "3"
+services:
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - TRANSMISSION_WEB_HOME=/transmission-web-control/ #optional
+    volumes:
+      - transmission_config:/config
+      - ${DOWNLOAD_PATH}:/downloads
+      - ${WATCH_PATH}:/watch
+    networks:
+      macvlan_network:
+        ipv4_address: ${MACVLAN_IP_INT_ADDRESS}
+    restart: unless-stopped
+    
+volumes:
+  transmission_config:
+  
+networks:
+  macvlan_network:
+    external: true
+    name: home_network

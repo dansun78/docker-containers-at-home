@@ -17,8 +17,8 @@ services:
       WEBPASSWORD: ${WEBPASSWD}
     # Volumes store your data between container upgrades
     volumes:
-       - './etc-pihole/:/etc/pihole/'
-       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+       - pihole:/etc/pihole/
+       - dnsmasq:/etc/dnsmasq.d/
     dns:
       - 127.0.0.1
       - 1.1.1.1
@@ -27,3 +27,7 @@ services:
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
+
+volumes:
+    pihole:
+    dnsmasq:

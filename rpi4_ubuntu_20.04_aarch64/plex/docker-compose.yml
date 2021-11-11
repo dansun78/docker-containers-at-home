@@ -1,0 +1,24 @@
+version: "3"
+services:
+  plex:
+    image: dansun78/pms-docker-pi:1.24.5.5173
+    container_name: plex
+    hostname: plex
+    environment:
+      - TZ=${TZ}
+      - PLEX_CLAIM=${PLEX_CLAIM}
+      - PLEX_UID=${PLEX_UID}
+      - PLEX_GID=${PLEX_GID}
+      - CHANGE_CONFIG_DIR_OWNERSHIP=false
+    volumes:
+      - ${CONFIG_PATH}:/config/Library
+      - ${DATA_PATH}:/data
+    networks:
+      macvlan_network:
+        ipv4_address: ${MACVLAN_IP_INT_ADDRESS}
+    restart: unless-stopped
+  
+networks:
+  macvlan_network:
+    external: true
+    name: home_network
